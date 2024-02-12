@@ -10,4 +10,4 @@
 
 
 ## Tutorials used
--[Stevdza-San: Bottom Navigation with Jetpack Compose](https://www.youtube.com/watch?v=gg-KBGH9T8s)
+- [Stevdza-San: Bottom Navigation with Jetpack Compose](https://www.youtube.com/watch?v=gg-KBGH9T8s)
