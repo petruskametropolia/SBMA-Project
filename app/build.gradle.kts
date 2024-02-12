@@ -50,6 +50,8 @@ android {
 }
 
 dependencies {
+    implementation ("androidx.navigation:navigation-compose:2.7.7")
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
