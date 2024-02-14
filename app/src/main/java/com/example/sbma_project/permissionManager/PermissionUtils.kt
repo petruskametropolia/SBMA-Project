@@ -1,4 +1,4 @@
-package com.example.sbma_project.pemissionManager
+package com.example.sbma_project.permissionManager
 
 import android.Manifest
 import android.content.Context

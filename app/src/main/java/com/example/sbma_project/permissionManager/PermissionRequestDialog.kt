@@ -1,4 +1,4 @@
-package com.example.sbma_project.pemissionManager
+package com.example.sbma_project.permissionManager
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
