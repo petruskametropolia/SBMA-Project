@@ -4,9 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.sbma_project.Views.History
-import com.example.sbma_project.Views.Home
-import com.example.sbma_project.Views.Info
+import com.example.sbma_project.views.History
+import com.example.sbma_project.views.Home
+import com.example.sbma_project.views.Info
 
 @Composable
 fun BottomNavGraph(navController: NavHostController) {

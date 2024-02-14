@@ -1,10 +1,10 @@
-package com.example.sbma_project.Views
+package com.example.sbma_project.views
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
 fun Home() {
-    // Home screen content goes here
-    Text(text = "Home Screen")
+    MapView()
 }
+
