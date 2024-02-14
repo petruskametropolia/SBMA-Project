@@ -50,6 +50,9 @@ android {
 }
 
 dependencies {
+
+    val lifecycleVersion = "2.7.0"
+
     implementation ("androidx.navigation:navigation-compose:2.7.7")
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
 
@@ -68,4 +71,14 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+
+
+    // Lifecycle
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+    implementation ("androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion")
+    implementation ("androidx.lifecycle:lifecycle-service:$lifecycleVersion")
 }
