@@ -74,7 +74,8 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-
+    //coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     // Lifecycle
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
@@ -90,4 +91,5 @@ dependencies {
     implementation ("com.google.android.gms:play-services-location:21.1.0")
     implementation ("com.google.maps.android:maps-ktx:3.4.0")
     implementation ("com.google.maps.android:maps-utils-ktx:3.2.1")
+
 }
