@@ -29,7 +29,7 @@ class RunViewModel(
     private val _state = MutableStateFlow(RunState())
     private val state = combine(_state,_sortType,_runs){ state, sortType, runs ->
         state.copy(
-            runs = runs,
+            //runs = runs,
             sortType = sortType,
 
         )
@@ -52,12 +52,12 @@ class RunViewModel(
                 val time = state.value.time
 
                 if(
-                    date.isBlank() ||
-                    avgSpeed.isBlank() ||
-                    distance.isBlank() ||
-                    steps.isBlank() ||
-                    stepLength.isBlank() ||
-                    time.isBlank()
+                    date.isBlank() //||
+//                    avgSpeed.isBlank() ||
+//                    distance.isBlank() ||
+//                    steps.isBlank() ||
+//                    stepLength.isBlank() ||
+//                    time.isBlank()
                     ){
                     return
                 }
@@ -73,7 +73,7 @@ class RunViewModel(
                     dao.upsertRun(run)
                 }
                 _state.update { it.copy(
-                    isAddingContact = false,
+                    //isAddingContact = false,
                     date = "",
                     avgSpeed = 0,
                     distance = 0,
