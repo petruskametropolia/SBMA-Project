@@ -5,26 +5,39 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.currentCompositionLocalContext
 import androidx.compose.ui.Modifier
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.compose.CameraPositionState
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.MapProperties
+import com.google.maps.android.compose.MapType
 import com.google.maps.android.compose.Polyline
 import com.google.maps.android.compose.rememberCameraPositionState
 
 @Composable
 fun MapView(modifier: Modifier) {
     val mapProperties = MapProperties(
-        isMyLocationEnabled = true
+        isMyLocationEnabled = true,
+        mapType = MapType.HYBRID,
+        isTrafficEnabled = true
     )
 
+    val currentLoc = LatLng(60.23634, 24.81781)
+
     val cameraPositionState = rememberCameraPositionState()
+
+    LaunchedEffect(key1 = currentLoc) {
+        cameraPositionState.centerOnLocation(currentLoc)
+    }
 
     Box(modifier = modifier) {
         GoogleMap(
             modifier = Modifier.fillMaxSize(),
             properties = mapProperties,
-            cameraPositionState = cameraPositionState
+            cameraPositionState = cameraPositionState,
         ){
             Polyline(points = listOf(
                 LatLng(60.23634, 24.81781),
@@ -39,3 +52,13 @@ fun MapView(modifier: Modifier) {
 
 
 }
+
+private suspend fun CameraPositionState.centerOnLocation(
+    location: LatLng
+) = animate(
+    update = CameraUpdateFactory.newLatLngZoom(
+        location,
+        15f
+    ),
+    durationMs = 1500
+)

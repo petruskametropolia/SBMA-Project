@@ -2,7 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
-
+    id ("kotlin-kapt")
+    id ("com.google.dagger.hilt.android")
 }
 
 android {
@@ -92,4 +93,10 @@ dependencies {
     implementation ("com.google.maps.android:maps-ktx:3.4.0")
     implementation ("com.google.maps.android:maps-utils-ktx:3.2.1")
 
+    //Accompanist (Permission)
+    implementation ("com.google.accompanist:accompanist-permissions:0.31.3-beta")
+
+    //Hilt
+    implementation ("com.google.dagger:hilt-android:2.48")
+    kapt ("com.google.dagger:hilt-compiler:2.48")
 }
