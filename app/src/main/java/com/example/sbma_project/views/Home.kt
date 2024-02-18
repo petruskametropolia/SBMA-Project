@@ -34,7 +34,6 @@ import com.google.maps.android.compose.MapProperties
 import com.google.maps.android.compose.MapType
 import com.google.maps.android.compose.Polyline
 
-
 @Composable
 fun Home(
     locationPermissionState: String, currentPosition: LatLng? = null,
@@ -98,6 +97,7 @@ fun Home(
                     }
                 }
             } else {
+                //grant permission screen
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
@@ -129,7 +129,7 @@ fun Home(
 fun DrawPolyline(points: List<LatLng>) {
     if (points.isNotEmpty()) {
         // Draw polyline
-        Polyline(points = points, width = 5f, color = Color.Blue)
+        Polyline(points = points, width = 15f, color = Color.Blue)
     }
 }
 

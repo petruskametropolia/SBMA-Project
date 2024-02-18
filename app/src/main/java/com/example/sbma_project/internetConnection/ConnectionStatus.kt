@@ -1,6 +1,6 @@
 package com.example.sbma_project.internetConnection
 
 sealed class ConnectionStatus {
-    object Available : ConnectionStatus()
-    object Unavailable: ConnectionStatus()
+    data object Available : ConnectionStatus()
+    data object Unavailable: ConnectionStatus()
 }

@@ -30,8 +30,7 @@ fun BottomNavGraph(
                 currentPosition= currentPosition, cameraState = cameraState,
                 pathPoints = pathPoints,
                 settingsActionListener = settingsActionListener,
-                isConnected = isConnected
-            )
+                isConnected = isConnected)
         }
         composable(route = BottomBarScreen.History.route) {
             History()
