@@ -21,7 +21,6 @@ import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.CameraPositionState
 
-@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen(
@@ -51,10 +50,6 @@ fun MainScreen(
         }
     }
 }
-
-
-
-
 
 @Composable
 fun BottomBar(navController: NavHostController){
