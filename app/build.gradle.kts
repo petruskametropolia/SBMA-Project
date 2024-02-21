@@ -3,6 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     //id("com.google.devtools.ksp") not working: ksp replaces kapt
     id("kotlin-kapt")
+    id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id ("com.google.dagger.hilt.android")
 }
 
 android {
@@ -52,6 +54,9 @@ android {
 }
 
 dependencies {
+
+    val lifecycleVersion = "2.7.0"
+
     // Navigation Component
     implementation ("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.7")
@@ -92,4 +97,29 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    //coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    // Lifecycle
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+    implementation ("androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion")
+    implementation ("androidx.lifecycle:lifecycle-service:$lifecycleVersion")
+
+    // Google maps
+    implementation ("com.google.maps.android:maps-compose:2.14.0")
+    implementation ("com.google.android.gms:play-services-maps:18.2.0")
+    implementation ("com.google.android.gms:play-services-location:21.1.0")
+    implementation ("com.google.maps.android:maps-ktx:3.4.0")
+    implementation ("com.google.maps.android:maps-utils-ktx:3.2.1")
+
+    //Accompanist (Permission)
+    implementation ("com.google.accompanist:accompanist-permissions:0.31.3-beta")
+
+    //Hilt
+    implementation ("com.google.dagger:hilt-android:2.48")
+    kapt ("com.google.dagger:hilt-compiler:2.48")
 }
