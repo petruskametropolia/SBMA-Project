@@ -1,5 +1,7 @@
 package com.example.sbma_project.views
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,6 +28,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.sbma_project.SettingsActionListener
 import com.example.sbma_project.uiComponents.RunCard
+import com.example.sbma_project.viewmodels.LocationViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.CameraPositionState
@@ -34,13 +37,15 @@ import com.google.maps.android.compose.MapProperties
 import com.google.maps.android.compose.MapType
 import com.google.maps.android.compose.Polyline
 
+@RequiresApi(Build.VERSION_CODES.S)
 @Composable
 fun Home(
     locationPermissionState: String, currentPosition: LatLng? = null,
     cameraState: CameraPositionState? = null,
     pathPoints: List<LatLng>? = null,
     settingsActionListener: SettingsActionListener,
-    isConnected: Boolean
+    isConnected: Boolean,
+    locationViewModel: LocationViewModel
 ) {
     var isFirstTime by remember { mutableStateOf(true) } // Track if it's the first time
 
@@ -92,7 +97,8 @@ fun Home(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .fillMaxHeight(1f)
-                                .padding(10.dp)
+                                .padding(10.dp),
+                            locationViewModel = locationViewModel
                         )
                     }
                 }

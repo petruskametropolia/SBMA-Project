@@ -1,6 +1,8 @@
 package com.example.sbma_project
 
 import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
@@ -18,9 +20,11 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.sbma_project.viewmodels.LocationViewModel
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.CameraPositionState
 
+@RequiresApi(Build.VERSION_CODES.S)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen(
@@ -29,8 +33,9 @@ fun MainScreen(
     cameraState: CameraPositionState? = null,
     pathPoints: List<LatLng>? = null,
     settingsActionListener: SettingsActionListener,
-    isConnected: Boolean
-) {
+    isConnected: Boolean,
+    locationViewModel: LocationViewModel
+    ) {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { BottomBar(navController = navController) }
@@ -45,7 +50,8 @@ fun MainScreen(
                 cameraState = cameraState,
                 pathPoints = pathPoints,
                 settingsActionListener= settingsActionListener,
-                isConnected = isConnected
+                isConnected = isConnected,
+                locationViewModel = locationViewModel
             )
         }
     }

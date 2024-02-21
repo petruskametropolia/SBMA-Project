@@ -19,12 +19,38 @@ class LocationViewModel @Inject constructor(
     private val getLocationUseCase: GetLocationUseCase
 ) : ViewModel() {
 
+    //run tracker state (start/ pause / stop button state)
+    private val _isRunning = MutableStateFlow(false)
+    val isRunning = _isRunning.asStateFlow()
+
+    private val _time = MutableStateFlow(0L)
+    val time = _time.asStateFlow()
+
+    private val _stopButtonEnabled = MutableStateFlow(false)
+    val stopButtonEnabled = _stopButtonEnabled.asStateFlow()
+
+    fun toggleIsRunning() {
+        _isRunning.value = !_isRunning.value
+        _stopButtonEnabled.value = !_isRunning.value
+    }
+
+    fun resetTime() {
+        _time.value = 0L
+        _isRunning.value = false
+        _stopButtonEnabled.value = false
+    }
+
+    fun updateTime(newTime: Long) {
+        _time.value = newTime
+    }
+
     private val _viewState: MutableStateFlow<ViewState> = MutableStateFlow(ViewState.Loading)
     val viewState = _viewState.asStateFlow()
 
     // State to hold the list of LatLng points representing the polyline
     private val _pathPoints: MutableStateFlow<List<LatLng>> = MutableStateFlow(emptyList())
     val pathPoints = _pathPoints.asStateFlow()
+
 
     fun handle(event: PermissionEvent) {
         when (event) {

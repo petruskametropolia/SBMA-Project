@@ -1,15 +1,19 @@
 package com.example.sbma_project
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.sbma_project.viewmodels.LocationViewModel
 import com.example.sbma_project.views.History
 import com.example.sbma_project.views.Home
 import com.example.sbma_project.views.Info
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.CameraPositionState
 
+@RequiresApi(Build.VERSION_CODES.S)
 @Composable
 fun BottomNavGraph(
     navController: NavHostController,
@@ -18,7 +22,8 @@ fun BottomNavGraph(
     cameraState: CameraPositionState? = null,
     pathPoints: List<LatLng>? = null,
     settingsActionListener: SettingsActionListener,
-    isConnected: Boolean
+    isConnected: Boolean,
+    locationViewModel: LocationViewModel
 ) {
     NavHost(
         navController = navController,
@@ -30,7 +35,9 @@ fun BottomNavGraph(
                 currentPosition= currentPosition, cameraState = cameraState,
                 pathPoints = pathPoints,
                 settingsActionListener = settingsActionListener,
-                isConnected = isConnected)
+                isConnected = isConnected,
+                locationViewModel = locationViewModel,
+            )
         }
         composable(route = BottomBarScreen.History.route) {
             History()
