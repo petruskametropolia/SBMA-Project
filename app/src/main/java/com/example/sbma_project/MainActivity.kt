@@ -60,6 +60,8 @@ class MainActivity : ComponentActivity(), SettingsActionListener {
 
         setContent {
             val pathPoints by locationViewModel.pathPoints.collectAsState()
+            val isRunning by locationViewModel.isRunning.collectAsState()
+
 
             val permissionState = rememberMultiplePermissionsState(
                 permissions = listOf(
@@ -104,7 +106,8 @@ class MainActivity : ComponentActivity(), SettingsActionListener {
                                 MainScreen(
                                     "loading",
                                     settingsActionListener= this@MainActivity,
-                                    isConnected = isConnected
+                                    isConnected = isConnected,
+                                    locationViewModel = locationViewModel
                                 )
                             }
 
@@ -112,8 +115,9 @@ class MainActivity : ComponentActivity(), SettingsActionListener {
                                 MainScreen(
                                     "revoked",
                                     settingsActionListener= this@MainActivity,
-                                    isConnected = isConnected
-                                    )
+                                    isConnected = isConnected,
+                                    locationViewModel = locationViewModel
+                                )
                             }
 
                             is ViewState.Success -> {
@@ -121,9 +125,10 @@ class MainActivity : ComponentActivity(), SettingsActionListener {
                                     "success",
                                     LatLng(this.location?.latitude ?: 0.0, this.location?.longitude ?: 0.0),
                                     rememberCameraPositionState(),
-                                    pathPoints = pathPoints,
+                                    pathPoints = if (isRunning) pathPoints else emptyList(),
                                     settingsActionListener= this@MainActivity,
-                                    isConnected = isConnected
+                                    isConnected = isConnected,
+                                    locationViewModel = locationViewModel
                                 )
                             }
                         }
