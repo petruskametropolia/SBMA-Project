@@ -2,8 +2,8 @@ package com.example.sbma_project
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sbma_project.DB.Run
-import com.example.sbma_project.DB.RunDao
+import com.example.sbma_project.database.Run
+import com.example.sbma_project.database.RunDao
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

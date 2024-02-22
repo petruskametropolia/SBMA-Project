@@ -1,6 +1,6 @@
 package com.example.sbma_project
 
-import com.example.sbma_project.DB.Run
+import com.example.sbma_project.database.Run
 
 data class RunState (
     val run: List<Run> = emptyList(),

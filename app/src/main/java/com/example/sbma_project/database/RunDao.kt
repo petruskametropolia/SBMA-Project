@@ -1,4 +1,4 @@
-package com.example.sbma_project.DB
+package com.example.sbma_project.database
 
 import androidx.room.Dao
 import androidx.room.Delete
