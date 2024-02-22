@@ -1,6 +1,6 @@
 package com.example.sbma_project
 
-import com.example.sbma_project.DB.Run
+import com.example.sbma_project.database.Run
 
 sealed interface RunEvent {
     data object SavaRun: RunEvent
