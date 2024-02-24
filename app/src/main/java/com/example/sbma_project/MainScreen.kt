@@ -20,6 +20,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.sbma_project.repository.TimerViewModel
 import com.example.sbma_project.viewmodels.LocationViewModel
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.CameraPositionState
@@ -34,7 +35,8 @@ fun MainScreen(
     pathPoints: List<LatLng>? = null,
     settingsActionListener: SettingsActionListener,
     isConnected: Boolean,
-    locationViewModel: LocationViewModel
+    locationViewModel: LocationViewModel,
+    timerViewModel: TimerViewModel
     ) {
     val navController = rememberNavController()
     Scaffold(
@@ -51,8 +53,9 @@ fun MainScreen(
                 pathPoints = pathPoints,
                 settingsActionListener= settingsActionListener,
                 isConnected = isConnected,
-                locationViewModel = locationViewModel
-            )
+                locationViewModel = locationViewModel,
+                timerViewModel = timerViewModel,
+                )
         }
     }
 }

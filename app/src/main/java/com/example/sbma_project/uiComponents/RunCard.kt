@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.sbma_project.R
+import com.example.sbma_project.repository.TimerViewModel
 import com.example.sbma_project.viewmodels.LocationViewModel
 import kotlinx.coroutines.delay
 
@@ -39,7 +40,8 @@ import kotlinx.coroutines.delay
 @Composable
 fun RunCard(
     modifier: Modifier,
-    locationViewModel: LocationViewModel
+    locationViewModel: LocationViewModel,
+    timerViewModel: TimerViewModel,
 ) {
 /*    var isRunning by remember { mutableStateOf(false) }
     var time by remember { mutableLongStateOf(0L) }
@@ -149,6 +151,7 @@ fun RunCard(
                 Button(onClick = {
                     /*time = 0
                     isRunning = false*/
+                    timerViewModel.createTimer(time)
                     locationViewModel.resetTime()
                 },
                     enabled = stopButtonEnabled
