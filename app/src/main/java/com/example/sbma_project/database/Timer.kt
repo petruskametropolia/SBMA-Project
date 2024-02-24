@@ -7,20 +7,19 @@ import androidx.room.Insert
 import androidx.room.PrimaryKey
 import androidx.room.Query
 
-@Entity
+@Entity(tableName = "timers")
 data class Timer(
     @PrimaryKey(autoGenerate = true)
-    val id : Int = 0,
-    val durationInMills: Long
+    val id: Long = 0,
+    val durationInMillis: Long = 0L,
 )
 
 @Dao
-interface TimerDao{
-
+interface TimerDao {
     @Insert
-    suspend fun insertTimer(timer: Timer)
+    suspend fun insertTimer(timer: Timer): Long
 
-    @Query("SELECT * FROM timer")
+    @Query("SELECT * FROM timers")
     fun getAllTimers(): LiveData<List<Timer>>
 
 }

@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [Run::class], [Timer::class],
+    entities = [Run::class, Timer::class],
     version = 2
 )
 abstract class RunDatabase: RoomDatabase() {

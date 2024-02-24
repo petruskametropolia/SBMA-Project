@@ -42,6 +42,7 @@ import com.example.sbma_project.extension.hasLocationPermission
 import com.example.sbma_project.internetConnection.ConnectionStatus
 import com.example.sbma_project.internetConnection.currentConnectivityStatus
 import com.example.sbma_project.internetConnection.observeConnectivityAsFLow
+import com.example.sbma_project.repository.TimerViewModel
 import com.example.sbma_project.ui.theme.SBMAProjectTheme
 import com.example.sbma_project.viewmodels.LocationViewModel
 import com.example.sbma_project.viewmodels.PermissionEvent
@@ -73,6 +74,7 @@ class MainActivity : ComponentActivity(), SettingsActionListener {
         super.onCreate(savedInstanceState)
 
         val locationViewModel: LocationViewModel by viewModels()
+        val timerViewModel :TimerViewModel by viewModels()
 
         setContent {
             val pathPoints by locationViewModel.pathPoints.collectAsState()
@@ -124,7 +126,8 @@ class MainActivity : ComponentActivity(), SettingsActionListener {
                                     "loading",
                                     settingsActionListener= this@MainActivity,
                                     isConnected = isConnected,
-                                    locationViewModel = locationViewModel
+                                    locationViewModel = locationViewModel,
+                                    timerViewModel = timerViewModel,
                                 )
                             }
 
@@ -133,8 +136,9 @@ class MainActivity : ComponentActivity(), SettingsActionListener {
                                     "revoked",
                                     settingsActionListener= this@MainActivity,
                                     isConnected = isConnected,
-                                    locationViewModel = locationViewModel
-                                )
+                                    locationViewModel = locationViewModel,
+                                    timerViewModel = timerViewModel,
+                                    )
                             }
 
                             is ViewState.Success -> {
@@ -145,8 +149,9 @@ class MainActivity : ComponentActivity(), SettingsActionListener {
                                     pathPoints = if (isRunning) pathPoints else emptyList(),
                                     settingsActionListener= this@MainActivity,
                                     isConnected = isConnected,
-                                    locationViewModel = locationViewModel
-                                )
+                                    locationViewModel = locationViewModel,
+                                    timerViewModel = timerViewModel,
+                                    )
                             }
                         }
                     }

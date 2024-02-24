@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.sbma_project.SettingsActionListener
+import com.example.sbma_project.repository.TimerViewModel
 import com.example.sbma_project.uiComponents.RunCard
 import com.example.sbma_project.viewmodels.LocationViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -45,7 +46,8 @@ fun Home(
     pathPoints: List<LatLng>? = null,
     settingsActionListener: SettingsActionListener,
     isConnected: Boolean,
-    locationViewModel: LocationViewModel
+    locationViewModel: LocationViewModel,
+    timerViewModel: TimerViewModel,
 ) {
     var isFirstTime by remember { mutableStateOf(true) } // Track if it's the first time
 
@@ -98,8 +100,9 @@ fun Home(
                                 .fillMaxWidth()
                                 .fillMaxHeight(1f)
                                 .padding(10.dp),
-                            locationViewModel = locationViewModel
-                        )
+                            locationViewModel = locationViewModel,
+                            timerViewModel = timerViewModel,
+                            )
                     }
                 }
             } else {
