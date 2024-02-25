@@ -43,7 +43,9 @@ fun BottomNavGraph(
                 )
         }
         composable(route = BottomBarScreen.History.route) {
-            History()
+            History(
+                timerViewModel = timerViewModel,
+                )
         }
         composable(route = BottomBarScreen.Info.route) {
             Info()

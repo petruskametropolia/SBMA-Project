@@ -1,6 +1,7 @@
 package com.example.sbma_project.uiComponents
 
 import android.os.Build
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
@@ -34,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import com.example.sbma_project.R
 import com.example.sbma_project.repository.TimerViewModel
 import com.example.sbma_project.viewmodels.LocationViewModel
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.delay
 
 @RequiresApi(Build.VERSION_CODES.S)
@@ -42,6 +44,7 @@ fun RunCard(
     modifier: Modifier,
     locationViewModel: LocationViewModel,
     timerViewModel: TimerViewModel,
+    pathPoints: List<LatLng>?
 ) {
 /*    var isRunning by remember { mutableStateOf(false) }
     var time by remember { mutableLongStateOf(0L) }
@@ -52,6 +55,9 @@ fun RunCard(
             time++
         }
     }*/
+
+
+    Log.d("PathPoints from run card", "Path points: $pathPoints")
 
 
 
@@ -151,7 +157,9 @@ fun RunCard(
                 Button(onClick = {
                     /*time = 0
                     isRunning = false*/
-                    timerViewModel.createTimer(time)
+                    if (pathPoints != null) {
+                        timerViewModel.createTimer(time, pathPoints)
+                    }
                     locationViewModel.resetTime()
                 },
                     enabled = stopButtonEnabled

@@ -2,14 +2,16 @@ package com.example.sbma_project.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
 @Database(
     entities = [Run::class, Timer::class],
-    version = 2
+    version = 3
 )
+@TypeConverters(Converters::class)
 abstract class RunDatabase: RoomDatabase() {
 
-    abstract val dao: RunDao
+    abstract fun runDao(): RunDao
 
     abstract fun timerDao() :TimerDao
 }

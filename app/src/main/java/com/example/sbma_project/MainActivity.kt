@@ -57,7 +57,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity(), SettingsActionListener {
 
-    private val runDatabase: RunDatabase by lazy {
+/*    private val runDatabase: RunDatabase by lazy {
         Room.databaseBuilder(
             applicationContext,
             runDatabase::class.java, "database"
@@ -66,7 +66,7 @@ class MainActivity : ComponentActivity(), SettingsActionListener {
 
     private val RunDao: RunDao by lazy {
         runDatabase.dao
-    }
+    }*/
 
     @OptIn(ExperimentalPermissionsApi::class)
     @RequiresApi(Build.VERSION_CODES.S)
