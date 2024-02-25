@@ -36,8 +36,8 @@ fun MainScreen(
     settingsActionListener: SettingsActionListener,
     isConnected: Boolean,
     locationViewModel: LocationViewModel,
-    timerViewModel: TimerViewModel
-    ) {
+    timerViewModel: TimerViewModel,
+) {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { BottomBar(navController = navController) }

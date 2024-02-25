@@ -22,8 +22,6 @@ fun History(timerViewModel: TimerViewModel) {
             timersState.value = timers
         }
     }
-    Log.d("allTimers", "$timersState")
-
     LazyColumn {
         items(timersState.value) { timer ->
             TimerItem(timer = timer)
@@ -34,6 +32,5 @@ fun History(timerViewModel: TimerViewModel) {
 
 @Composable
 fun TimerItem(timer: Timer) {
-    // Display individual timer item
-    Text(text = "Timer ID: ${timer.id}, Duration: ${timer.durationInMillis}, pathpoints : ${timer.routePath}")
+    Text(text = "Timer ID: ${timer.id}, Duration: ${timer.durationInMillis}s, path array size : ${timer.routePath?.size}")
 }

@@ -35,9 +35,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import androidx.room.Room
-import com.example.sbma_project.database.RunDao
-import com.example.sbma_project.database.RunDatabase
 import com.example.sbma_project.extension.hasLocationPermission
 import com.example.sbma_project.internetConnection.ConnectionStatus
 import com.example.sbma_project.internetConnection.currentConnectivityStatus
@@ -46,6 +43,7 @@ import com.example.sbma_project.repository.TimerViewModel
 import com.example.sbma_project.ui.theme.SBMAProjectTheme
 import com.example.sbma_project.viewmodels.LocationViewModel
 import com.example.sbma_project.viewmodels.PermissionEvent
+import com.example.sbma_project.viewmodels.RunningState
 import com.example.sbma_project.viewmodels.ViewState
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
@@ -56,18 +54,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity(), SettingsActionListener {
-
-/*    private val runDatabase: RunDatabase by lazy {
-        Room.databaseBuilder(
-            applicationContext,
-            runDatabase::class.java, "database"
-        ).fallbackToDestructiveMigration().build()
-    }
-
-    private val RunDao: RunDao by lazy {
-        runDatabase.dao
-    }*/
-
     @OptIn(ExperimentalPermissionsApi::class)
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,8 +64,6 @@ class MainActivity : ComponentActivity(), SettingsActionListener {
 
         setContent {
             val pathPoints by locationViewModel.pathPoints.collectAsState()
-            val isRunning by locationViewModel.isRunning.collectAsState()
-
 
             val permissionState = rememberMultiplePermissionsState(
                 permissions = listOf(
@@ -90,15 +74,16 @@ class MainActivity : ComponentActivity(), SettingsActionListener {
 
             val viewState by locationViewModel.viewState.collectAsState()
 
+            //check internet connection
             val isConnected = checkConnectivityStatus()
 
 
             SBMAProjectTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    
                     LaunchedEffect(!hasLocationPermission()) {
                         permissionState.launchMultiplePermissionRequest()
                     }
@@ -113,7 +98,6 @@ class MainActivity : ComponentActivity(), SettingsActionListener {
                                 permissionState.launchMultiplePermissionRequest()
                             }
                         }
-
                         else -> {
                             locationViewModel.handle(PermissionEvent.Revoked)
                         }
@@ -128,6 +112,7 @@ class MainActivity : ComponentActivity(), SettingsActionListener {
                                     isConnected = isConnected,
                                     locationViewModel = locationViewModel,
                                     timerViewModel = timerViewModel,
+
                                 )
                             }
 
@@ -138,7 +123,8 @@ class MainActivity : ComponentActivity(), SettingsActionListener {
                                     isConnected = isConnected,
                                     locationViewModel = locationViewModel,
                                     timerViewModel = timerViewModel,
-                                    )
+
+                                )
                             }
 
                             is ViewState.Success -> {
@@ -146,7 +132,7 @@ class MainActivity : ComponentActivity(), SettingsActionListener {
                                     "success",
                                     LatLng(this.location?.latitude ?: 0.0, this.location?.longitude ?: 0.0),
                                     rememberCameraPositionState(),
-                                    pathPoints = if (isRunning) pathPoints else emptyList(),
+                                    pathPoints = if (locationViewModel.runningState == RunningState.Running) pathPoints else emptyList(),
                                     settingsActionListener= this@MainActivity,
                                     isConnected = isConnected,
                                     locationViewModel = locationViewModel,

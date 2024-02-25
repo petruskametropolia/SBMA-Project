@@ -9,21 +9,17 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
     @Provides
-    fun provideAppDatabase(@ApplicationContext context: Context) : RunDatabase {
+    fun provideAppDatabase(@ApplicationContext context: Context): RunDatabase {
         return Room.databaseBuilder(context, RunDatabase::class.java, "run_database")
             .build()
     }
-
     @Provides
-    fun provideTimerDao(runDatabase: RunDatabase) : TimerDao {
+    fun provideTimerDao(runDatabase: RunDatabase): TimerDao {
         return runDatabase.timerDao()
     }
-
-
 }

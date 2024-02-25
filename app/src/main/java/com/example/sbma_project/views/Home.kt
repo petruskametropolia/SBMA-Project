@@ -52,7 +52,6 @@ fun Home(
 ) {
     var isFirstTime by remember { mutableStateOf(true) } // Track if it's the first time
 
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -76,7 +75,7 @@ fun Home(
                         }
                     }
                 }
-                //when marker is needed
+                //when marker is needed (for later)
                 val marker = currentPosition?.let { LatLng(it.latitude, currentPosition.longitude) }
 
                 if (cameraState != null) {
@@ -95,7 +94,6 @@ fun Home(
                             if (pathPoints != null) {
                                 DrawPolyline(pathPoints)
                             }
-
                         }
                         RunCard(
                             modifier = Modifier
@@ -140,7 +138,6 @@ fun Home(
 @Composable
 fun DrawPolyline(points: List<LatLng>) {
     if (points.isNotEmpty()) {
-        // Draw polyline
         Polyline(points = points, width = 15f, color = Color.Blue)
     }
 }
