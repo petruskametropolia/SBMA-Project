@@ -1,6 +1,7 @@
 package com.example.sbma_project.views
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -50,6 +51,7 @@ fun Home(
     timerViewModel: TimerViewModel,
 ) {
     var isFirstTime by remember { mutableStateOf(true) } // Track if it's the first time
+
 
     Box(
         modifier = Modifier
@@ -102,6 +104,7 @@ fun Home(
                                 .padding(10.dp),
                             locationViewModel = locationViewModel,
                             timerViewModel = timerViewModel,
+                            pathPoints = pathPoints,
                             )
                     }
                 }
