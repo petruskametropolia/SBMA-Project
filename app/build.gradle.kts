@@ -1,8 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    //id("com.google.devtools.ksp") not working: ksp replaces kapt
+    id("kotlin-kapt")
     id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
-    id ("kotlin-kapt")
     id ("com.google.dagger.hilt.android")
 }
 
@@ -56,8 +57,30 @@ dependencies {
 
     val lifecycleVersion = "2.7.0"
 
+    // Navigation Component
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.7.7")
     implementation ("androidx.navigation:navigation-compose:2.7.7")
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
+
+    // Room components
+    implementation ("androidx.room:room-runtime:2.6.1")
+    //noinspection KaptUsageInsteadOfKsp
+    kapt ("androidx.room:room-compiler:2.6.1")
+    implementation ("androidx.room:room-ktx:2.6.1")
+
+    // Lifecycle components
+    implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation ("androidx.lifecycle:lifecycle-common-java8:2.7.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+
+    // Kotlin components
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.22")
+    api ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    api ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+
+
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
