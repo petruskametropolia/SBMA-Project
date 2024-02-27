@@ -38,9 +38,9 @@
             android:value="@integer/google_play_services_version" />
 
 
-        <meta-data
+           <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
+              android:value="AIzaSyBf3tEmdR18S-2v0E1i1x0oqcXJ9imntT4"/>
 
         <activity
             android:name=".MainActivity"

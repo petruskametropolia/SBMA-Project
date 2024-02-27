@@ -55,6 +55,7 @@ android {
 
 dependencies {
 
+    implementation("androidx.test:runner:1.5.2")
     val lifecycleVersion = "2.7.0"
 
 
