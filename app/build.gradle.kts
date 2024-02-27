@@ -57,9 +57,11 @@ dependencies {
 
     val lifecycleVersion = "2.7.0"
 
+
     // Navigation Component
     implementation ("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.7")
+
     implementation ("androidx.navigation:navigation-compose:2.7.7")
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
 
@@ -98,8 +100,10 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+
     //coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
 
     // Lifecycle
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
@@ -108,6 +112,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation ("androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion")
     implementation ("androidx.lifecycle:lifecycle-service:$lifecycleVersion")
+
 
     // Google maps
     implementation ("com.google.maps.android:maps-compose:2.14.0")
