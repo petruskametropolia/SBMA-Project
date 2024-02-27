@@ -1,6 +1,5 @@
 package com.example.sbma_project
 
-
 import android.Manifest
 import android.content.Intent
 import android.net.Uri
@@ -8,9 +7,9 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -41,25 +40,6 @@ import com.example.sbma_project.internetConnection.ConnectionStatus
 import com.example.sbma_project.internetConnection.currentConnectivityStatus
 import com.example.sbma_project.internetConnection.observeConnectivityAsFLow
 import com.example.sbma_project.repository.TimerViewModel
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.sbma_project.permissionManager.PermissionRequestDialog
-import com.example.sbma_project.permissionManager.PermissionUtils
-import com.example.sbma_project.permissionManager.PermissionUtils.hasAllPermission
-import com.example.sbma_project.permissionManager.PermissionUtils.hasLocationPermission
-import com.example.sbma_project.permissionManager.PermissionUtils.openAppSetting
 import com.example.sbma_project.ui.theme.SBMAProjectTheme
 import com.example.sbma_project.viewmodels.LocationViewModel
 import com.example.sbma_project.viewmodels.PermissionEvent
@@ -76,8 +56,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity(), SettingsActionListener {
     @OptIn(ExperimentalPermissionsApi::class)
     @RequiresApi(Build.VERSION_CODES.S)
-@RequiresApi(Build.VERSION_CODES.S)
-class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -101,14 +79,11 @@ class MainActivity : ComponentActivity() {
 
 
             SBMAProjectTheme {
-                // request permission
-                PermissionRequester()
-
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    
+
                     LaunchedEffect(!hasLocationPermission()) {
                         permissionState.launchMultiplePermissionRequest()
                     }
@@ -138,7 +113,7 @@ class MainActivity : ComponentActivity() {
                                     locationViewModel = locationViewModel,
                                     timerViewModel = timerViewModel,
 
-                                )
+                                    )
                             }
 
                             ViewState.RevokedPermissions -> {
@@ -149,7 +124,7 @@ class MainActivity : ComponentActivity() {
                                     locationViewModel = locationViewModel,
                                     timerViewModel = timerViewModel,
 
-                                )
+                                    )
                             }
 
                             is ViewState.Success -> {
@@ -162,7 +137,7 @@ class MainActivity : ComponentActivity() {
                                     isConnected = isConnected,
                                     locationViewModel = locationViewModel,
                                     timerViewModel = timerViewModel,
-                                    )
+                                )
                             }
                         }
                     }
@@ -233,47 +208,6 @@ fun connectivityStatus(): State<ConnectionStatus> {
     }
 }
 
-    @Composable
-    private fun PermissionRequester() {
-        var showPermissionDeclinedRationale by rememberSaveable { mutableStateOf(false) }
-        var showRationale by rememberSaveable { mutableStateOf(false) }
-        val permissionLauncher = rememberLauncherForActivityResult(
-            contract = ActivityResultContracts.RequestMultiplePermissions(),
-            onResult = {
-                it.forEach { (permission, isGranted) ->
-                    if (!isGranted && PermissionUtils.locationPermissions.contains(permission)) {
-                        showPermissionDeclinedRationale = true
-                    }
-                }
-            }
-        )
-        if (showPermissionDeclinedRationale)
-            PermissionRequestDialog(
-                onDismissClick = {
-                    if (!hasLocationPermission())
-                        finish()
-                    else showPermissionDeclinedRationale = false
-                },
-                onOkClick = { openAppSetting() }
-            )
-        if (showRationale)
-            PermissionRequestDialog(
-                onDismissClick = ::finish,
-                onOkClick = {
-                    showRationale = false
-                    permissionLauncher.launch(PermissionUtils.allPermissions)
-                }
-            )
-        LaunchedEffect(key1 = Unit) {
-            when {
-                hasAllPermission() -> return@LaunchedEffect
-                PermissionUtils.locationPermissions.any { shouldShowRequestPermissionRationale(it) } -> showRationale =
-                    true
-                else -> permissionLauncher.launch(PermissionUtils.allPermissions)
-            }
-        }
-    }
-}
 
 
 @Preview(showBackground = true)
@@ -288,4 +222,3 @@ fun GreetingPreview() {
 interface SettingsActionListener {
     fun openAppSettings()
 }
-

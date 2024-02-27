@@ -22,7 +22,7 @@ fun PermissionRequestDialog(
         },
         text = {
             Text(
-                text = "To continue using this Application, you must allow location access.",
+                text = "To continue using this Application, you must allow location and activity recognition access.",
             )
         },
         modifier = modifier,
@@ -31,14 +31,14 @@ fun PermissionRequestDialog(
                 onClick = onOkClick,
             ) {
                 Text(
-                    text = "Grant Permission",
+                    text = "Grant Permissions",
                 )
             }
         },
         dismissButton = {
             Button(
                 onClick = onDismissClick,
-                ) {
+            ) {
                 Text(
                     text = "Close",
                 )

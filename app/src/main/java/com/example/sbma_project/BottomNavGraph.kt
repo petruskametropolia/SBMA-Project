@@ -18,7 +18,7 @@ import com.google.maps.android.compose.CameraPositionState
 @Composable
 fun BottomNavGraph(
     navController: NavHostController,
-    locationPermissionState :String,
+    locationPermissionState:String,
     currentPosition: LatLng? = null,
     cameraState: CameraPositionState? = null,
     pathPoints: List<LatLng>? = null,

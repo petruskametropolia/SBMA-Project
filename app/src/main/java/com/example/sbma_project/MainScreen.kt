@@ -6,7 +6,6 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -48,10 +47,10 @@ fun MainScreen(
             BottomNavGraph(
                 navController = navController,
                 locationPermissionState = locationPermissionState,
-                currentPosition= currentPosition,
+                currentPosition = currentPosition,
                 cameraState = cameraState,
                 pathPoints = pathPoints,
-                settingsActionListener= settingsActionListener,
+                settingsActionListener = settingsActionListener,
                 isConnected = isConnected,
                 locationViewModel = locationViewModel,
                 timerViewModel = timerViewModel,
